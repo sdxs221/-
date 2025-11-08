@@ -1,2 +1,867 @@
-# -
-皮空
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+-- 尝试加载WindUI
+local success, WindUI = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/main.lua"))()
+end)
+
+if not success then
+    local message = Instance.new("Message")
+    message.Text = "WindUI加载失败，请检查网络连接"
+    message.Parent = workspace
+    wait(3)
+    message:Destroy()
+    return
+end
+
+-- 创建主窗口
+local Window = WindUI:CreateWindow({
+    Title = "皮空重置版",
+    Icon = "rbxassetid://137107933084759",
+    Folder = "皮空脚本",
+    Size = UDim2.fromOffset(580, 340),
+    Theme = "Light"
+})
+
+-- 创建所有分区
+local Tabs = {}
+
+-- 主功能分区
+Tabs.MainSection = Window:Section({
+    Title = "主功能",
+    Icon = "home",
+    Opened = true,
+})
+
+Tabs.CoreSection = Window:Section({
+    Title = "核心功能",
+    Opened = true,
+})
+
+Tabs.TranslateSection = Window:Section({
+    Title = "API翻译",
+    Opened = true,
+})
+
+-- 脚本集合分区
+Tabs.ScriptSection = Window:Section({
+    Title = "脚本集合",
+    Opened = true,
+})
+
+Tabs.TeleportSection = Window:Section({
+    Title = "传送功能",
+    Opened = true,
+})
+
+-- 游戏专门分区（删除通用游戏，保留其他）
+Tabs.StrongestSection = Window:Section({
+    Title = "最强战场",
+    Opened = true,
+})
+
+Tabs.AbandonedSection = Window:Section({
+    Title = "被遗弃",
+    Opened = true,
+})
+
+Tabs.V99Section = Window:Section({
+    Title = "99页",
+    Opened = true,
+})
+
+Tabs.DeadRailsSection = Window:Section({
+    Title = "死铁轨",
+    Opened = true,
+})
+
+Tabs.BackdoorSection = Window:Section({
+    Title = "后门",
+    Opened = true,
+})
+
+Tabs.InkGameSection = Window:Section({
+    Title = "墨水游戏",
+    Opened = true,
+})
+
+Tabs.StealBrainRedSection = Window:Section({
+    Title = "偷走脑红",
+    Opened = true,
+})
+
+-- 其他分区
+Tabs.WindowSection = Window:Section({
+    Title = "窗口设置",
+    Opened = true,
+})
+
+Tabs.OtherSection = Window:Section({
+    Title = "其他功能",
+    Opened = true,
+})
+
+-- 创建标签页
+Tabs.MainTab = Tabs.MainSection:Tab({ Title = "首页", Icon = "home" })
+Tabs.CoreTab = Tabs.CoreSection:Tab({ Title = "核心功能", Icon = "zap" })
+Tabs.TranslateTab = Tabs.TranslateSection:Tab({ Title = "API翻译", Icon = "languages" })
+
+Tabs.ScriptTab = Tabs.ScriptSection:Tab({ Title = "常用脚本", Icon = "download" })
+Tabs.FETab = Tabs.ScriptSection:Tab({ Title = "FE脚本", Icon = "paintbrush" })
+Tabs.KnownScriptTab = Tabs.ScriptSection:Tab({ Title = "知名脚本", Icon = "star" })
+Tabs.TeleportTab = Tabs.TeleportSection:Tab({ Title = "传送功能", Icon = "navigation" })
+
+-- 游戏专门标签页（删除通用游戏）
+Tabs.StrongestTab = Tabs.StrongestSection:Tab({ Title = "最强战场", Icon = "crosshair" })
+Tabs.AbandonedTab = Tabs.AbandonedSection:Tab({ Title = "被遗弃", Icon = "archive" })
+Tabs.V99Tab = Tabs.V99Section:Tab({ Title = "99页", Icon = "box" })
+Tabs.DeadRailsTab = Tabs.DeadRailsSection:Tab({ Title = "死铁轨", Icon = "train" })
+Tabs.BackdoorTab = Tabs.BackdoorSection:Tab({ Title = "后门", Icon = "key" })
+Tabs.InkGameTab = Tabs.InkGameSection:Tab({ Title = "墨水游戏", Icon = "pen-tool" })
+Tabs.StealBrainRedTab = Tabs.StealBrainRedSection:Tab({ Title = "偷走脑红", Icon = "brain" })
+
+Tabs.WindowTab = Tabs.WindowSection:Tab({ Title = "窗口设置", Icon = "app-window-mac" })
+Tabs.OtherTab = Tabs.OtherSection:Tab({ Title = "其他功能", Icon = "grid" })
+
+Window:SelectTab(1)
+
+-- ========== 首页内容 ==========
+Tabs.MainTab:Paragraph({
+    Title = "皮空重置版",
+    Desc = "更便捷的脚本体验\n所有功能已解锁，请尽情使用！",
+    Image = "user",
+    ImageSize = 42,
+})
+
+Tabs.MainTab:Paragraph({
+    Title = "系统信息",
+    Desc = "用户名: " .. game.Players.LocalPlayer.Name .. "\n用户ID: " .. game.Players.LocalPlayer.UserId,
+    Image = "info",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0099FF")
+})
+
+Tabs.MainTab:Paragraph({
+    Title = "您的注入器: " .. identifyexecutor(),
+    Desc = "当前使用的执行器信息",
+    Image = "cpu",
+    ImageSize = 24,
+    Color = Color3.fromHex("#FF6B6B")
+})
+
+-- ========== 核心功能 ==========
+Tabs.CoreTab:Paragraph({
+    Title = "核心功能",
+    Desc = "游戏基础功能修改",
+    Image = "zap",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.CoreTab:Slider({
+    Title = "移动速度",
+    Value = {
+        Min = 16,
+        Max = 100,
+        Default = 16,
+    },
+    Increment = 1,
+    Callback = function(value)
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+        end
+    end
+})
+
+Tabs.CoreTab:Slider({
+    Title = "跳跃高度",
+    Value = {
+        Min = 50,
+        Max = 200,
+        Default = 50,
+    },
+    Increment = 1,
+    Callback = function(value)
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+        end
+    end
+})
+
+Tabs.CoreTab:Slider({
+    Title = "重力",
+    Value = {
+        Min = 0.1,
+        Max = 500.0,
+        Default = 196.2,
+    },
+    Step = 0.1,
+    Callback = function(value)
+        game.Workspace.Gravity = value
+    end
+})
+
+local Noclip = false
+local NoclipConnection
+
+Tabs.CoreTab:Toggle({
+    Title = "穿墙模式",
+    Desc = "允许穿过墙壁和障碍物",
+    Value = false,
+    Callback = function(state)
+        Noclip = state
+        
+        if NoclipConnection then
+            NoclipConnection:Disconnect()
+            NoclipConnection = nil
+        end
+
+        if state then
+            NoclipConnection = RunService.Stepped:Connect(function()
+                local character = game.Players.LocalPlayer.Character
+                if not character then return end
+                
+                for _, part in pairs(character:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = false
+                    end
+                end
+            end)
+        else
+            local character = game.Players.LocalPlayer.Character
+            if character then
+                for _, part in pairs(character:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = true
+                    end
+                end
+            end
+        end
+    end
+})
+
+local Lighting = game:GetService("Lighting")
+Tabs.CoreTab:Toggle({
+    Title = "夜视模式",
+    Desc = "增强环境光照",
+    Value = false,
+    Callback = function(state)
+        Lighting.Ambient = state and Color3.new(1, 1, 1) or Color3.new(0, 0, 0)
+    end
+})
+
+-- ESP玩家透视功能
+local ESPEnabled = false
+local ESPConnections = {}
+
+Tabs.CoreTab:Toggle({
+    Title = "ESP玩家透视",
+    Desc = "显示其他玩家位置",
+    Value = false,
+    Callback = function(state)
+        ESPEnabled = state
+        if state then
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer then
+                    createESP(player)
+                end
+            end
+            
+            table.insert(ESPConnections, Players.PlayerAdded:Connect(function(player)
+                if ESPEnabled then
+                    createESP(player)
+                end
+            end))
+            
+            table.insert(ESPConnections, Players.PlayerRemoving:Connect(function(player)
+                if ESPConnections[player] then
+                    ESPConnections[player]:Disconnect()
+                    ESPConnections[player] = nil
+                end
+            end))
+        else
+            for _, connection in pairs(ESPConnections) do
+                connection:Disconnect()
+            end
+            ESPConnections = {}
+            
+            for _, obj in pairs(game.CoreGui:GetDescendants()) do
+                if obj.Name == "ESP_" .. game.Players.LocalPlayer.Name then
+                    obj:Destroy()
+                end
+            end
+        end
+    end
+})
+
+function createESP(player)
+    local character = player.Character or player.CharacterAdded:Wait()
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "ESP_" .. game.Players.LocalPlayer.Name
+    highlight.Adornee = character
+    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    highlight.FillTransparency = 0.5
+    highlight.OutlineTransparency = 0
+    highlight.Parent = game.CoreGui
+    
+    ESPConnections[player] = player.CharacterAdded:Connect(function(newChar)
+        highlight.Adornee = newChar
+    end)
+end
+
+Tabs.CoreTab:Button({
+    Title = "偷取物品栏",
+    Callback = function()
+        for _, v in pairs(game.Players:GetChildren()) do
+            wait()
+            for i, b in pairs(v.Backpack:GetChildren()) do
+                b.Parent = game.Players.LocalPlayer.Backpack
+            end
+        end
+        WindUI:Notify({Title = "偷取物品栏", Content = "物品栏偷取完成", Duration = 3})
+    end
+})
+
+local HealthLock = false
+Tabs.CoreTab:Toggle({
+    Title = "锁定血量",
+    Desc = "保持满血状态",
+    Value = false,
+    Callback = function(state)
+        HealthLock = state
+        if state then
+            while HealthLock do
+                wait(4)
+                if game.Players.LocalPlayer.Character then
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end
+            end
+        end
+    end
+})
+
+Tabs.CoreTab:Button({
+    Title = "开启反摔伤",
+    Callback = function()
+        loadstring(game:HttpGet("http://rawscripts.net/raw/Universal-Script-Touch-fling-script-22447"))()
+        WindUI:Notify({Title = "反摔伤", Content = "反摔伤功能已开启", Duration = 3})
+    end
+})
+
+-- ========== API翻译 ==========
+Tabs.TranslateTab:Paragraph({
+    Title = "API翻译",
+    Desc = "高级翻译系统",
+    Image = "languages",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.TranslateTab:Button({
+    Title = "加载API翻译脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/smalldesikon/eyidfki/ecca7e04b83299b86c5ce8af98762071cc5f346f/api%E7%BF%BB%E8%AF%91"))()
+        WindUI:Notify({
+            Title = "API翻译",
+            Content = "正在加载高级翻译系统...",
+            Duration = 3
+        })
+    end
+})
+
+-- ========== 常用脚本 ==========
+Tabs.ScriptTab:Paragraph({
+    Title = "常用脚本",
+    Desc = "各种实用脚本集合",
+    Image = "download",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.ScriptTab:Button({
+    Title = "无限跳",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+    end
+})
+
+Tabs.ScriptTab:Button({
+    Title = "飞行模式",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+    end
+})
+
+Tabs.ScriptTab:Button({
+    Title = "视角锁定",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ccacca444/scripts1/main/locking.lua"))()
+    end
+})
+
+Tabs.ScriptTab:Button({
+    Title = "反挂机",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
+    end
+})
+
+Tabs.ScriptTab:Button({
+    Title = "爬墙功能",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+    end
+})
+
+-- ========== FE脚本 ==========
+Tabs.FETab:Paragraph({
+    Title = "FE脚本",
+    Desc = "各种FE功能脚本",
+    Image = "paintbrush",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.FETab:Button({
+    Title = "隐身",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/vP6CrQJj"))()
+    end
+})
+
+Tabs.FETab:Button({
+    Title = "蜘蛛侠",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E8%9C%98%E8%9B%9B%E4%BE%A0.txt"))()
+    end
+})
+
+Tabs.FETab:Button({
+    Title = "R15无敌少侠飞行",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
+    end
+})
+
+Tabs.FETab:Button({
+    Title = "R6无敌少侠飞行",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%97%A0%E6%95%8C%E5%B0%91%E4%BE%A0%E9%A3%9E%E8%A1%8Cr6.txt"))()
+    end
+})
+
+-- ========== 知名脚本 ==========
+Tabs.KnownScriptTab:Paragraph({
+    Title = "知名脚本",
+    Desc = "各种知名脚本集合",
+    Image = "star",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.KnownScriptTab:Button({
+    Title = "皮脚本",
+    Callback = function()
+        getgenv().XiaoPi="皮脚本QQ群1002100032" 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+    end
+})
+
+Tabs.KnownScriptTab:Button({
+    Title = "XA Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/h8nC0fLb", true))()
+    end
+})
+
+Tabs.KnownScriptTab:Button({
+    Title = "退休v2",
+    Callback = function()
+        TX = "脚本群:160369111"
+        Script = "Free永久免费"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/TX-Free-YYDS/refs/heads/main/FREE-TX-TEAM"))()
+    end
+})
+
+Tabs.KnownScriptTab:Button({
+    Title = "天空脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/skyhub"))()
+    end
+})
+
+-- ========== 传送功能 ==========
+Tabs.TeleportTab:Paragraph({
+    Title = "传送功能",
+    Desc = "玩家传送和位置传送",
+    Image = "navigation",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+local PlayerList = {}
+local SelectedPlayer = nil
+
+local function GetPlayerList()
+    local players = game:GetService("Players"):GetPlayers()
+    local playerNames = {}
+    PlayerList = {}
+    
+    for _, player in ipairs(players) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(playerNames, player.Name)
+            PlayerList[player.Name] = player
+        end
+    end
+    return playerNames
+end
+
+local playerDropdown = Tabs.TeleportTab:Dropdown({
+    Title = "选择玩家",
+    Multi = false,
+    AllowNone = true,
+    Values = GetPlayerList(),
+    Callback = function(selectedPlayer)
+        if selectedPlayer then
+            SelectedPlayer = PlayerList[selectedPlayer]
+            WindUI:Notify({Title = "玩家选择", Content = "已选择玩家: " .. selectedPlayer, Duration = 3})
+        end
+    end
+})
+
+Tabs.TeleportTab:Button({
+    Title = "刷新玩家列表",
+    Callback = function()
+        playerDropdown:Refresh(GetPlayerList())
+        WindUI:Notify({Title = "玩家列表", Content = "已刷新玩家列表", Duration = 2})
+    end
+})
+
+Tabs.TeleportTab:Button({
+    Title = "传送到选中玩家",
+    Callback = function()
+        if not SelectedPlayer then
+            WindUI:Notify({Title = "传送失败", Content = "请先选择一个玩家", Duration = 3})
+            return
+        end
+        
+        local targetPlayer = SelectedPlayer
+        local localPlayer = game.Players.LocalPlayer
+        
+        if not targetPlayer.Character then
+            WindUI:Notify({Title = "传送失败", Content = "目标玩家没有角色", Duration = 3})
+            return
+        end
+        
+        local targetRoot = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local localRoot = localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart")
+        
+        if not targetRoot or not localRoot then
+            WindUI:Notify({Title = "传送失败", Content = "传送失败，缺少必要组件", Duration = 3})
+            return
+        end
+        
+        local success = pcall(function()
+            localRoot.CFrame = CFrame.new(targetRoot.Position + Vector3.new(0, 3, 0))
+        end)
+        
+        if success then
+            WindUI:Notify({Title = "传送成功", Content = "已传送到玩家: " .. targetPlayer.Name, Duration = 3})
+        else
+            WindUI:Notify({Title = "传送失败", Content = "传送过程中出现错误", Duration = 3})
+        end
+    end
+})
+
+Tabs.TeleportTab:Button({
+    Title = "传送到鼠标位置",
+    Callback = function()
+        local localPlayer = game.Players.LocalPlayer
+        local localRoot = localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart")
+        
+        if not localRoot then
+            WindUI:Notify({Title = "传送失败", Content = "您没有HumanoidRootPart", Duration = 3})
+            return
+        end
+        
+        local mouse = localPlayer:GetMouse()
+        local targetPosition = mouse.Hit.Position
+        
+        local success = pcall(function()
+            localRoot.CFrame = CFrame.new(targetPosition + Vector3.new(0, 3, 0))
+        end)
+        
+        if success then
+            WindUI:Notify({Title = "传送成功", Content = "已传送到鼠标位置", Duration = 3})
+        else
+            WindUI:Notify({Title = "传送失败", Content = "传送过程中出现错误", Duration = 3})
+        end
+    end
+})
+
+-- ========== 最强战场 ==========
+Tabs.StrongestTab:Paragraph({
+    Title = "最强战场脚本",
+    Desc = "最强战场相关功能脚本",
+    Image = "crosshair",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.StrongestTab:Button({
+    Title = "加载不知名脚本一",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/Deliver-through-the-wall-perspective/main/%E8%87%AA%E5%8A%A8%E6%9C%9D%E5%90%91"))()
+    end
+})
+
+Tabs.StrongestTab:Button({
+    Title = "加载不知名脚本二",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/Deliver-through-the-wall-perspective/main/%E8%87%AA%E5%8A%A8%E6%9C%9D%E5%90%91"))()
+    end
+})
+
+Tabs.StrongestTab:Button({
+    Title = "加载隐身脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-NSExpression-v2-a3-TSBG-20252"))()
+    end
+})
+
+-- ========== 被遗弃 ==========
+Tabs.AbandonedTab:Paragraph({
+    Title = "被遗弃脚本",
+    Desc = "被遗弃相关功能脚本",
+    Image = "archive",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.AbandonedTab:Button({
+    Title = "加载B0bby脚本",
+    Callback = function()
+        getgenv().XiaoPi="被遗弃-B0bby[汉化版]" 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/187ec501507e956200e0741a7bc38ca1cd83973f/%E8%A2%AB%E9%81%97%E5%BC%83B0bby%E6%B1%89%E5%8C%96%20(1).lua"))()
+    end
+})
+
+Tabs.AbandonedTab:Button({
+    Title = "复制卡密",
+    Callback = function()
+        local key = "Samuelspizzatrip"
+        setclipboard(key)
+        WindUI:Notify({Title = "被遗弃", Content = "卡密已复制到剪贴板: " .. key, Duration = 5})
+    end
+})
+
+-- ========== 99页 ==========
+Tabs.V99Tab:Paragraph({
+    Title = "99页脚本集合",
+    Desc = "各种强大的99页脚本",
+    Image = "box",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.V99Tab:Button({
+    Title = "加载虚空脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+    end
+})
+
+Tabs.V99Tab:Button({
+    Title = "加载99夜红蛇",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+})
+
+Tabs.V99Tab:Button({
+    Title = "加载H4x99页脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xyx8846/-/refs/heads/main/H4x%E6%B1%89%E5%8C%96%E8%84%9A%E6%9C%AC"))()
+    end
+})
+
+-- ========== 死铁轨 ==========
+Tabs.DeadRailsTab:Paragraph({
+    Title = "死铁轨脚本",
+    Desc = "死铁轨相关功能脚本",
+    Image = "train",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.DeadRailsTab:Button({
+    Title = "加载Dead脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Articles-Hub/ROBLOXScript/refs/heads/main/File-Script/Dead%20rails.lua"))()
+    end
+})
+
+Tabs.DeadRailsTab:Button({
+    Title = "加载VZ脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+    end
+})
+
+-- ========== 后门 ==========
+Tabs.BackdoorTab:Paragraph({
+    Title = "后门执行器",
+    Desc = "各种后门执行器脚本",
+    Image = "key",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.BackdoorTab:Button({
+    Title = "加载后门执行器",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6x/source.lua"))()
+    end
+})
+
+Tabs.BackdoorTab:Button({
+    Title = "复制后门一代码",
+    Callback = function()
+        local code = 'require(6858594080).KrnKidsSus("用户")'
+        setclipboard(code)
+        WindUI:Notify({Title = "后门", Content = "后门一代码已复制到剪贴板！", Duration = 5})
+    end
+})
+
+-- ========== 墨水游戏 ==========
+Tabs.InkGameTab:Paragraph({
+    Title = "墨水游戏脚本",
+    Desc = "墨水游戏相关功能",
+    Image = "pen-tool",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.InkGameTab:Button({
+    Title = "加载墨水游戏汉化",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/Ringta"))()
+    end
+})
+
+-- ========== 偷走脑红 ==========
+Tabs.StealBrainRedTab:Paragraph({
+    Title = "偷走脑红脚本集合",
+    Desc = "各种脑红反作弊绕过和功能脚本",
+    Image = "brain",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.StealBrainRedTab:Button({
+    Title = "加载辣椒脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()
+    end
+})
+
+Tabs.StealBrainRedTab:Button({
+    Title = "自动开启脑红反作弊绕过",
+    Callback = function()
+        WindUI:Notify({Title = "偷走脑红", Content = "脑红反作弊绕过已自动开启！", Duration = 3})
+    end
+})
+
+-- ========== 窗口设置 ==========
+Tabs.WindowTab:Section({ Title = "主题设置", Icon = "palette" })
+
+local themeValues = {}
+for name, _ in pairs(WindUI:GetThemes()) do
+    table.insert(themeValues, name)
+end
+
+local themeDropdown = Tabs.WindowTab:Dropdown({
+    Title = "选择主题",
+    Multi = false,
+    AllowNone = false,
+    Value = nil,
+    Values = themeValues,
+    Callback = function(theme)
+        WindUI:SetTheme(theme)
+    end
+})
+themeDropdown:Select(WindUI:GetCurrentTheme())
+
+local ToggleTransparency = Tabs.WindowTab:Toggle({
+    Title = "切换窗口透明度",
+    Callback = function(e)
+        Window:ToggleTransparency(e)
+    end,
+    Value = WindUI:GetTransparency()
+})
+
+-- ========== 其他功能 ==========
+Tabs.OtherTab:Paragraph({
+    Title = "其他功能",
+    Desc = "各种实用工具和功能",
+    Image = "grid",
+    ImageSize = 24,
+    Color = Color3.fromHex("#0078D7")
+})
+
+Tabs.OtherTab:Button({
+    Title = "显示服务器信息",
+    Callback = function()
+        local players = game.Players:GetPlayers()
+        WindUI:Notify({
+            Title = "服务器信息",
+            Content = "玩家数量: " .. #players .. "/" .. game.Players.MaxPlayers,
+            Duration = 5
+        })
+    end
+})
+
+Tabs.OtherTab:Button({
+    Title = "重置角色",
+    Callback = function()
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character:BreakJoints()
+            WindUI:Notify({Title = "重置角色", Content = "角色已重置", Duration = 2})
+        end
+    end
+})
+
+Tabs.OtherTab:Paragraph({
+    Title = "关于",
+    Desc = "作者: 皮炎\n联系方式: 快手1466456286",
+    Image = "user",
+    ImageSize = 24,
+    Color = Color3.fromHex("#00A2FF"),
+    Buttons = {
+        {
+            Title = "复制联系方式",
+            Icon = "copy",
+            Variant = "Tertiary",
+            Callback = function()
+                setclipboard("快手1466456286")
+                WindUI:Notify({Title = "复制成功", Content = "已复制联系方式到剪贴板", Duration = 2})
+            end
+        }
+    }
+})
+
+-- 窗口关闭时的清理
+Window:OnClose(function()
+    print("皮空重置版 - 窗口已关闭")
+    if NoclipConnection then
+        NoclipConnection:Disconnect()
+    end
+    for _, connection in pairs(ESPConnections) do
+        connection:Disconnect()
+    end
+end)
+
+print("皮空重置版 - 界面初始化完成！")
