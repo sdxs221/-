@@ -1,0 +1,317 @@
+local Translations = {
+   ["Muscle Legends"] = "肌肉传奇",
+    ["Auto Strength"] = "自动力量",
+    ["Auto Set Size 2"] = "自动设置体型2",
+    ["Lock Position"] = "锁定位置",
+    ["Auto Teleport to King"] = "自动传送至国王处",
+    ["Auto Rebirth (Infinite)"] = "无限自动重生",
+    ["Rebirth Stop Point"] = "重生停止点",
+    ["Rebirth Until Stop Point"] = "重生直到停止点",
+    ["Packs Farm (Use With Lock Position)"] = "礼包农场（与锁定位置配合使用）",
+    ["Fast Rebirth (Required 7 New Packs)"] = "快速重生（需要7个新礼包）",
+    ["WARNING: Do Not Click The Button Of Fast Rebirth Without Having 7 Packs!"] = "警告：没有7个礼包时不要点击快速重生按钮！",
+    ["Enchanted Hub | Muscle Legends"] = "魔法中心 | 肌肉传奇",
+    ["Introduction"] = "介绍",
+    ["Rebirthing"] = "重生",
+    ["Teleport"] = "传送",
+    ["Rocks"] = "岩石",
+    ["FarmV1"] = "农场V1",
+    ["Pets Hatch"] = "宠物孵化",
+    ["Killing"] = "击杀",
+    ["Ultimates"] = "终极技能",
+    ["Stats"] = "属性",
+    ["View Stats"] = "查看属性",
+    ["Tiny Island"] = "小小岛",
+    ["Frost Island"] = "霜冻岛",
+    ["Mythical Island"] = "神话岛",
+    ["Infernal Island"] = "炼狱岛",
+    ["Legend Island"] = "传奇岛",
+    ["Muscle King"] = "肌肉王",
+    ["Ancient Jungle Island"] = "远古丛林岛",
+    ["Fast Punch (For Fast Glitch)"] = "快速出拳（用于快速 glitch）",
+    ["Ancient Jungle Rock"] = "远古丛林岩石",
+    ["Muscle King Rock"] = "肌肉王岩石",
+    ["Rock Of Legends"] = "传奇岩石",
+    ["Inferno Rock"] = "炼狱岩石",
+    ["Mystic Rock"] = "神秘岩石",
+    ["Frozen Rock"] = "冰冻岩石",
+    ["Tiny Rock"] = "小小岩石",
+    ["AutoLiftGamepass"] = "自动举重游戏通行证",
+    ["Load Auto Click GUI"] = "加载自动点击界面",
+    ["---Fast Grind Will Only Work If You Have 7 Packs!"] = "---快速刷取仅在你拥有7个礼包时有效！",
+    ["Select Bench Press Location"] = "选择卧推位置",
+    ["Select Squat Location"] = "选择深蹲位置",
+    ["传送 Bench Press"] = "传送 卧推",
+    ["传送 Squat"] = "传送 深蹲",
+    ["Enter Rep Speed"] = "输入次数速度",
+    ["Start Gaining Strength"] = "开始增强力量",
+    ["Auto Punch"] = "自动出拳",
+    ["Fast Punch"] = "快速出拳",
+    ["Hide Frames"] = "隐藏框架",
+    ["Gain Strength"] = "增强力量",
+    ["Auto Fast Pushups"] = "自动快速俯卧撑",
+    ["Auto Fast Situps"] = "自动快速仰卧起坐",
+    ["Auto Handstands"] = "自动倒立",
+    ["Equip All Swift Samurai"] = "装备所有迅捷武士",
+    ["Equip All Tribal Overlord"] = "装备所有部落霸主",
+    ["Equip All Wild Wizard"] = "装备所有狂野巫师",
+    ["Equip All Mighty Monster"] = "装备所有强大怪物",
+    ["Jungle Farm"] = "丛林农场",
+    ["Starter Island"] = "起始岛",
+    ["Legend Beach"] = "传奇海滩",
+    ["Frost Gym"] = "霜冻健身房",
+    ["Mythical Gym"] = "神话健身房",
+    ["Eternal Gym"] = "永恒健身房",
+    ["Legend Gym"] = "传奇健身房",
+    ["Muscle King Gym"] = "肌肉王健身房",
+    ["Jungle Gym"] = "丛林健身房",
+    ["Auto Jungle Bench"] = "自动丛林卧推",
+    ["Auto Jungle Bar Lift"] = "自动丛林杠铃举重",
+    ["Auto Jungle Squat"] = "自动丛林深蹲",
+    ["Muscle King Farm"] = "肌肉王农场",
+    ["Auto Muscle King Lift"] = "自动肌肉王举重",
+    ["Auto Muscle King Boulder"] = "自动肌肉王巨石",
+    ["Legend Gym Farming"] = "传奇健身房刷取",
+    ["Auto Legend Lift"] = "自动传奇举重",
+    ["Auto Legend Press"] = "自动传奇卧推",
+    ["Select Pet"] = "选择宠物",
+    ["Auto Open Pet"] = "自动开启宠物",
+    ["Select Aura"] = "选择光环",
+    ["Auto Open Aura"] = "自动开启光环",
+    ["Select Crystal"] = "选择水晶",
+    ["Auto Open Crystal"] = "自动开启水晶",
+    ["Pet Name"] = "宠物名称",
+    ["Sell Pet (Click Everytime To Sell)"] = "出售宠物（每次点击出售）",
+    ["Neon Guardian"] = "霓虹守护者",
+    ["Blue Birdie"] = "蓝色小鸟",
+    ["Blue Bunny"] = "蓝色兔子",
+    ["Blue Firecaster"] = "蓝色火焰法师",
+    ["Blue Phoenix"] = "蓝色凤凰",
+    ["Crimson Falcon"] = "深红猎鹰",
+    ["Cybernetic Showdown Dragon"] = "控制论对决龙",
+    ["Dark Golem"] = "黑暗魔像",
+    ["Dark Legends Manticore"] = "黑暗传奇蝎狮",
+    ["Dark Vampy"] = "黑暗吸血鬼",
+    ["Astral Electro"] = "星体电击",
+    ["Azure Tundra"] = "蔚蓝冻原",
+    ["Blue Aura"] = "蓝色光环",
+    ["Dark Electro"] = "黑暗电击",
+    ["Dark Lightning"] = "黑暗闪电",
+    ["Dark Storm"] = "黑暗风暴",
+    ["Electro"] = "电击",
+    ["Enchanted Mirage"] = "魔法幻影",
+    ["Entropic Blast"] = "熵爆",
+    ["Eternal Megastrike"] = "永恒 mega 打击",
+    ["Blue Crystal"] = "蓝色水晶",
+    ["Green Crystal"] = "绿色水晶",
+    ["Frozen Crystal"] = "冰冻水晶",
+    ["Mythical Crystal"] = "神话水晶",
+    ["Inferno Crystal"] = "炼狱水晶",
+    ["Legends Crystal"] = "传奇水晶",
+    ["Muscle Elite Crystal"] = "肌肉精英水晶",
+    ["Galaxy Oracle Crystal"] = "银河先知水晶",
+    ["Sky Eclipse Crystal"] = "天空日食水晶",
+    ["Jungle Crystal"] = "丛林水晶",
+    ["Equip For Damage"] = "装备以提升伤害",
+    ["Equip For Durability"] = "装备以提升耐久",
+    ["Auto Punch"] = "自动出拳",
+    ["Fast Punch"] = "快速出拳",
+    ["Auto Kill Everyone"] = "自动击杀所有人",
+    ["Select Kill Method"] = "选择击杀方式",
+    ["Whitelist Players"] = "白名单玩家",
+    ["Auto Kill V2"] = "自动击杀 V2",
+    ["Auto Good Karma"] = "自动善业",
+    ["Auto Bad Karma"] = "自动恶业",
+    ["击杀 V2:"] = "击杀 V2:",
+    ["Whitelisted: None"] = "白名单：无",
+    ["Auto Kill"] = "自动击杀",
+    ["Auto Whitelist Friends"] = "自动白名单好友",
+    ["Whitelist Player (Enter Username/Display)"] = "白名单玩家（输入用户名/显示名）",
+    ["Unwhitelist Player (Enter Username/Display)"] = "移除白名单玩家（输入用户名/显示名）",
+    ["Clear All Whitelisted"] = "清除所有白名单",
+    ["Equip Pack Pet For More Damage/More Durability (Works Only If U Got Packs)"] = "装备礼包宠物以提升伤害/耐久（仅在你有礼包时有效）",
+    ["Select Pet Type"] = "选择宠物类型",
+    ["Mighty Monster"] = "强大怪物",
+    ["Wild Wizard"] = "狂野巫师",
+    ["Auto Fast Kill Player"] = "自动快速击杀玩家",
+    ["Spy Player"] = "侦查玩家",
+    ["Upgrade Ultimate"] = "升级终极技能",
+    ["RepSpeed"] = "次数速度",
+    ["PetSlot"] = "宠物栏位",
+    ["ItemCapacity"] = "物品容量",
+    ["DailySpin"] = "每日旋转",
+    ["ChestRewards"] = "宝箱奖励",
+    ["QuestRewards"] = "任务奖励",
+    ["MuscleMind"] = "肌肉心智",
+    ["JungleSwift"] = "丛林迅捷",
+    ["InfernalHealth"] = "炼狱生命值",
+    ["GalaxyGains"] = "银河增益",
+    ["DemonDamage"] = "恶魔伤害",
+    ["GoldenRebirth"] = "黄金重生",
+    ["Misc Brawl"] = "杂项 乱斗",
+    ["God Mode (Brawl)"] = "上帝模式（乱斗）",
+    ["GodMode (Tiny Island Gym)"] = "上帝模式（小小岛健身房）",
+    ["Auto Join Brawl"] = "自动加入乱斗",
+    ["---Optimizations---"] = "---优化---",
+    ["MiscV1"] = "杂项V1",
+    ["Destroy Ad 传送"] = "摧毁广告 传送",
+    ["Permanent Shift Lock"] = "永久 Shift 锁定",
+    ["Anti AFK"] = "防挂机",
+    ["Disable Trade"] = "禁用交易",
+    ["Hide Pets"] = "隐藏宠物",
+    ["Auto Lift"] = "自动举重",
+    ["属性 Changer V1"] = "属性 更改器 V1",
+    ["MiscV2"] = "杂项V2",
+    ["Auto Spin Wheel"] = "自动旋转轮盘",
+    ["Auto Eat Inventory"] = "自动食用库存",
+    ["Auto Claim Gifts"] = "自动领取礼物",
+    ["Anti Knockback & Anti Fling"] = "防击退 & 防抛射",
+    ["Full Walk On Water"] = "水上行走",
+    ["Remove Textures"] = "移除纹理",
+    ["Reduce Graphics"] = "降低画质",
+    ["Disable Shadows"] = "禁用阴影",
+    ["Disable Effects"] = "禁用特效",
+    ["Simplify Materials"] = "简化材质",
+    ["Remove Fog"] = "移除雾效",
+    ["Anti Lag (Advanced)"] = "防卡顿（高级）",
+    ["Ultra FPS Booster"] = "超级帧率提升",
+    ["Full Optimization"] = "完全优化",
+    ["Full Optimization V2"] = "完全优化 V2",
+    ["Darkstar Hunter"] = "暗星猎手",
+    ["Eternal Strike Leviathan"] = "永恒打击利维坦",
+    ["Frostwave Legends Penguin"] = "霜浪传奇企鹅",
+    ["Gold Warrior"] = "黄金战士",
+    ["Golden Phoenix"] = "黄金凤凰",
+    ["Golden Viking"] = "黄金维京人",
+    ["Green Butterfly"] = "绿色蝴蝶",
+    ["Green Firecaster"] = "绿色火焰法师",
+    ["Infernal Dragon"] = "炼狱龙",
+    ["Lightning Strike Phantom"] = "闪电打击幻影",
+    ["Magic Butterfly"] = "魔法蝴蝶",
+    ["Muscle Sensei"] = "肌肉大师",
+    ["Orange Hedgehog"] = "橙色刺猬",
+    ["Orange Pegasus"] = "橙色天马",
+    ["Phantom Genesis Dragon"] = "幻影创生龙",
+    ["Purple Dragon"] = "紫色龙",
+    ["Purple Falcon"] = "紫色猎鹰",
+    ["Red Dragon"] = "红色龙",
+    ["Red Firecaster"] = "红色火焰法师",
+    ["Red Kitty"] = "红色小猫",
+    ["Silver Dog"] = "银色狗",
+    ["Ultimate Supernova Pegasus"] = "终极超新星天马",
+    ["Ultra Birdie"] = "超级小鸟",
+    ["White Pegasus"] = "白色天马",
+    ["White Phoenix"] = "白色凤凰",
+    ["Yellow Butterfly"] = "黄色蝴蝶"
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iblameaabis/Enchanted/refs/heads/main/Enchanted%20Hub%20On%20Top"))()
+
+
+end)
