@@ -1,0 +1,258 @@
+local Translations = {
+   ["Sonic Boom"] = "声波冲击",
+    ["Sonic Blaster"] = "声波爆破器",
+    ["Gravity"] = "重力",
+    ["Gravity Katana"] = "重力武士刀",
+    ["Heavy Infliction"] = "重度伤害",
+    ["Tectonic Barrage"] = "地壳弹幕",
+    ["Gravity Orb"] = "重力球",
+    ["Tectonic Burst"] = "地壳爆发",
+    ["Zero Gravity"] = "零重力",
+    ["Gravity Globe"] = "重力球体",
+    ["Nature"] = "自然",
+    ["Christmas Tree Sword"] = "圣诞树剑",
+    ["Plantoid"] = "植物形态",
+    ["Spore Bombs"] = "孢子炸弹",
+    ["Nature's Blessing"] = "自然的祝福",
+    ["Nuclear Spore"] = "核孢子",
+    ["Pine Burst"] = "松树爆发",
+    ["Nature's Wrath"] = "自然的怒火",
+    ["Earth"] = "大地",
+    ["Tectonic Hamer"] = "地壳锤",
+    ["Stone Throw"] = "投掷石块",
+    ["Rocks Barrage"] = "岩石弹幕",
+    ["Large Boulder"] = "巨石",
+    ["Burrow"] = "挖掘",
+    ["Stone Henge"] = "巨石阵",
+    ["Earth Spikes"] = "地刺",
+    ["Time"] = "时间",
+    ["Time Scepter"] = "时间权杖",
+    ["Temporal Gate"] = "时空之门",
+    ["Warp Barrage"] = "扭曲弹幕",
+    ["Tempo Beam"] = "节奏光束",
+    ["Time Trap"] = "时间陷阱",
+    ["Warp Bomb"] = "扭曲炸弹",
+    ["Grand Clock"] = "大时钟",
+    ["Bone"] = "骨骼",
+    ["Bone Scythe"] = "骨镰",
+    ["Blaster"] = "爆破器",
+    ["Bones Barrage"] = "骨骼弹幕",
+    ["Flying Bone"] = "飞行骨骼",
+    ["Bone Surge"] = "骨骼涌动",
+    ["Twin Blasters"] = "双爆破器",
+    ["Judgement Blast"] = "审判爆破",
+    ["Lava"] = "熔岩",
+    ["Lava Katana"] = "熔岩武士刀",
+    ["Lava Ball"] = "熔岩球",
+    ["Magam Fists"] = "岩浆拳",
+    ["Lava Dash"] = "熔岩冲刺",
+    ["Volcano Sentry"] = "火山哨兵",
+    ["Magma Spikes"] = "岩浆尖刺",
+    ["Nibiru"] = "尼比鲁",
+    ["Light"] = "光明",
+    ["Light Saber"] = "光剑",
+    ["Light Ball"] = "光球",
+    ["Light Orbs"] = "光珠",
+    ["Blinding Light"] = "致盲之光",
+    ["Shooting Star"] = "流星",
+    ["Light Speed"] = "光速",
+    ["Light Beam"] = "光束",
+    ["Crystal"] = "水晶",
+    ["Crystal Cleaver"] = "水晶切割刀",
+    ["Powers :"] = "能力:",
+    ["OuxiHub | Elemental Powers"] = "OuxiHub | 元素能力",
+    ["Crystal Mine"] = "水晶矿场",
+    ["Energy Crash"] = "能量冲击",
+    ["Energy Crown"] = "能量皇冠",
+    ["Crystal Eruption"] = "水晶喷发",
+    ["Energy Crystal"] = "能量水晶",
+    ["Crystal Surge"] = "水晶涌动",
+    ["Devil"] = "恶魔",
+    ["Devil Sword"] = "恶魔之剑",
+    ["Evil Bullet"] = "邪恶子弹",
+    ["Fangs Barrage"] = "尖牙弹幕",
+    ["Evil Flash"] = "邪恶闪光",
+    ["Demon Orb"] = "恶魔球",
+    ["Demon Lock"] = "恶魔枷锁",
+    ["Dark Tsunami"] = "黑暗海啸",
+    ["Rebirth"] = "重生",
+    ["Dark Flames"] = "黑暗火焰",
+    ["Draedron's Tech"] = "德拉德伦科技",
+    ["Yoru"] = "夜",
+    ["Plasma Orbs"] = "等离子珠",
+    ["Red Saucer"] = "红色飞碟",
+    ["Undead Staff"] = "亡灵法杖",
+    ["Technology"] = "科技",
+    ["Hyper Sword"] = "超武之剑",
+    ["Phonton Blast"] = "光子爆破",
+    ["Twin-Photon Blash"] = "双光子闪光",
+    ["Tesla Turret"] = "特斯拉炮塔",
+    ["Orbital"] = "轨道",
+    ["Tesseract"] = "超立方体",
+    ["Hyper Slash"] = "超武斩击",
+    ["Space"] = "太空",
+    ["Space Gun"] = "太空枪",
+    ["Blackhole Orb"] = "黑洞球",
+    ["Moon Splitter"] = "裂月者",
+    ["Asteroid Belt"] = "小行星带",
+    ["Meteor Jam"] = "流星阻塞",
+    ["Cosmic Remote"] = "宇宙遥控器",
+    ["Space Saucer"] = "太空飞碟",
+    ["Thunder"] = "雷电",
+    ["Thunder Staff"] = "雷电法杖",
+    ["Bolt"] = "闪电",
+    ["Barrage"] = "弹幕",
+    ["Discharge"] = "放电",
+    ["Flying Nimbus"] = "筋斗云",
+    ["Lighting Strike"] = "雷击",
+    ["Storm"] = "风暴",
+    ["Venom"] = "毒液",
+    ["Venom Blade"] = "毒液之刃",
+    ["Poison Bullet"] = "毒弹",
+    ["Acid Rain"] = "酸雨",
+    ["Venom Stream"] = "毒液流",
+    ["Hardened Venom"] = "硬化毒液",
+    ["Poison Demon"] = "毒魔",
+    ["Bubbling Venom"] = "冒泡毒液",
+    ["Fire"] = "火焰",
+    ["Fire Sword"] = "火焰剑",
+    ["Fire Ball"] = "火球",
+    ["Fire Fly"] = "萤火虫",
+    ["Fire Bomb"] = "火焰炸弹",
+    ["Comet"] = "彗星",
+    ["Combust"] = "燃烧",
+    ["Fire Shower"] = "火焰雨",
+    ["Gamepass"] = "游戏通行证",
+    ["Cruel Sun"] = "残酷太阳",
+    ["Rocket Launcher"] = "火箭发射器",
+    ["Darkness"] = "黑暗",
+    ["Shadow Sword"] = "暗影剑",
+    ["Unseen Hands"] = "无形之手",
+    ["Unseen Barrage"] = "无形弹幕",
+    ["Dark Duo"] = "黑暗双子",
+    ["Abyss"] = "深渊",
+    ["Dark Hold"] = "黑暗禁锢",
+    ["Dark Arc"] = "黑暗弧线",
+    ["Ice"] = "寒冰",
+    ["Frost Staff"] = "寒霜法杖",
+    ["Frost Fire Ball"] = "寒霜火球",
+    ["Ice Disk"] = "寒冰圆盘",
+    ["Snow Ball"] = "雪球",
+    ["Ultracold Aura"] = "超冷光环",
+    ["Ice Spikes"] = "冰刺",
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/softbf395/Ouxi-SuperSonic/refs/heads/main/Elemental%20Powers%20Tycoon%20%5Bv1%5D"))()
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
