@@ -1,0 +1,191 @@
+local Translations = {
+["B0bbyHub / Forsaken"] = "B0bbyHub / 被遗忘者",
+    ["Main"] = "主页",
+    ["Stamina"] = "耐力",
+    ["Effects"] = "效果",
+    ["Generators"] = "发电机",
+    ["Air"] = "空中",
+    ["Killer | Esp"] = "杀手 | 透视",
+    ["Generator | ESP"] = "发电机 | 透视",
+    ["Items | Esp"] = "物品 | 透视",
+    ["Survivor | Esp"] = "幸存者 | 透视",
+    ["1x1x1x1 Zombie esp"] = "1x1x1x1 僵尸透视",
+    ["John doe Spike esp"] = "John doe 尖刺透视",
+    ["Pizza Delivery Minion esp"] = "披萨配送随从透视",
+    ["Elliot's Pizza esp"] = "Elliot的披萨透视",
+    ["Builderman Sentry/Dispenser esp"] = "Builderman 哨兵/补给器透视",
+    ["Respawn point Esp"] = "重生点透视",
+    ["Invisibility"] = "隐身",
+    ["Instant Proximity prompt (Instant interaction)"] = "即时交互提示",
+    ["Fullbright"] = "全亮",
+    ["Anti Stun"] = "防眩晕",
+    ["Item Aura"] = "物品光环",
+    ["Note:\nMight not work on free executors."] = "注意：\n免费注入器可能无法使用。",
+    ["Infinite Stamina"] = "无限耐力",
+    ["Remove Subspaced effect"] = "移除子空间效果",
+    ["Remove Glitched effect"] = "移除故障效果",
+    ["Remove Blindness effect"] = "移除致盲效果",
+    ["Remove Slowness effect"] = "移除减速效果",
+    ["Remove Nausea Effect"] = "移除恶心效果",
+    ["Remove Confusion Effect"] = "移除混乱效果",
+    ["Auto generator Fix"] = "自动修复发电机",
+    ["Delay Range"] = "延迟范围",
+    ["2.5 Seconds"] = "2.5 秒",
+    ["Instant Fix generator (GUI button)"] = "即时修复发电机（GUI按钮）",
+    ["Instant Fix Generator Keybind"] = "即时修复发电机按键绑定",
+    ["Aimbot / Player"] = "自瞄 / 玩家",
+    ["Fun"] = "娱乐",
+    ["Credits"] = "致谢",
+    ["Settings"] = "设置",
+    ["Note:\nif your brain is too small to understand the 'Survivor aimbot' and 'Killer aimbot'\nso the killer aimbot is aimbot but for killers and survivor aimbot is aimbot but\nfor survivors i made them separate so you can choose."] = "注意：\n如果你分不清“幸存者自瞄”和“杀手自瞄”\n杀手自瞄是给杀手用的自瞄，幸存者自瞄是给幸存者用的，我把它们分开方便你选择。",
+    ["Survivor Aimbot"] = "幸存者自瞄",
+    ["Survivor's Aimbot Prediction"] = "幸存者自瞄预判",
+    ["0.25 Prediction"] = "0.25 预判",
+    ["Survivor's Aimbot Smoothness"] = "幸存者自瞄平滑度",
+    ["0.1 Smoothness"] = "0.1 平滑度",
+    ["Killer Aimbot"] = "杀手自瞄",
+    ["Killer's Aimbot Prediction"] = "杀手自瞄预判",
+    ["Killer's Aimbot Smoothness"] = "杀手自瞄平滑度",
+    ["Note:\nPrediction from 0.25-0.5 is recommended."] = "注意：\n推荐预判值设置为 0.25-0.5。",
+    ["Dusekarr Switchable Aimbot"] = "Dusekarr 可切换自瞄",
+    ["Auto chance coinflip"] = "自动硬币翻转",
+    ["Choose the range"] = "选择范围",
+    ["3 Coinflips"] = "3 次硬币翻转",
+    ["Note:\nDon't use auto Slash killer when your the killer, it will cuase you to auto click\n(but if your c00lkid then nah)"] = "注意：\n当你是杀手时不要使用自动攻击，这会导致你自动点击\n（但如果你是酷小孩的话当我没说）",
+    ["Auto shedletsky slash killer"] = "自动 Shedletsky 杀手攻击",
+    ["Auto slash Distance"] = "自动攻击距离",
+    ["10 Studs"] = "10  studs",
+    ["Auto Tp to Pizza"] = "自动传送至披萨",
+    ["Auto Block as guest (experimental, Basically bad)"] = "访客自动格挡（实验性，基本没用）",
+    ["Guest block Distance"] = "访客格挡距离",
+    ["Auto 1x1x1x1 Popup"] = "自动 1x1x1x1 弹窗",
+    ["Auto Ghostburger At Ims"] = "在 Ims 自动 Ghostburger",
+    ["Homing Tripmine missiles"] = "追踪地雷导弹",
+    ["Fake Punch Button"] = "假出拳按钮",
+    ["Fake block button"] = "假格挡按钮",
+    ["Backflip Button"] = "后空翻按钮",
+    ["FrontFlip Button"] = "前空翻按钮",
+    ["Frontflip Keybind"] = "前空翻按键绑定",
+    ["Backflip Keybind"] = "后空翻按键绑定",
+    ["Fe Animations"] = "Fe 动画",
+    ["Masterbait"] = "钓鱼",
+    ["Arms-out Spin"] = "伸臂旋转",
+    ["Spinning Hands"] = "旋转手部",
+    ["Jumping Jacks"] = "开合跳",
+    ["slide button"] = "滑行按钮",
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub"))()
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
