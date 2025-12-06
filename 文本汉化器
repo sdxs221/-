@@ -1,8 +1,6 @@
 local translationDB = {
     ["Attack"] = "攻击",
     ["Defend"] = "防御",
-    ["Attack"] = "攻击",
-    ["Defend"] = "防御",
     ["Jump"] = "跳跃",
     ["Run"] = "奔跑",
     ["Walk"] = "行走",
@@ -194,7 +192,7 @@ local translationDB = {
     ["Enemy"] = "敌人",
     ["Boss"] = "首领",
     ["NPC"] = "非玩家角色",
-    ["Player"] = "玩家"
+    ["Player"] = "玩家",
     ["Home"] = "主页",
     ["Main"] = "主要",
     ["Stack Farm"] = "堆叠农场",
@@ -312,8 +310,8 @@ local translationDB = {
     ["Note: Don't use auto Slash killer when your the killer, it will cuase you to auto click (but if your c00lkid then nah)"] = "注意：当你是杀手时，不要使用自动挥砍杀手功能，这会导致你自动点击（但如果你是 C00lkid，那就没事）",
     ["Auto shedletsky slash killer"] = "自动 shedletsky 挥砍杀手",
     ["Auto slash Distance"] = "自动挥砍距离",
-    ["Auto Tp to Pizza"] = "自动传送到披萨处"，
-    ["Note: if your brain is too small to understand the 'Survivor aimbot' and 'Killer aimbot' so the killer aimbot is aimbot but for killers and survivor aimbot is aimbot but for survivors i made them separate so you can choose."] = "注意：如果你的脑子太小，无法理解“幸存者自动瞄准”和“杀手自动瞄准”，那么杀手自动瞄准是针对杀手的自动瞄准，幸存者自动瞄准是针对幸存者的自动瞄准，我把它们分开了，这样你就可以选择了。",
+    ["Auto Tp to Pizza"] = "自动传送到披萨处",
+    ["Note: if your brain is too small to understand the 'Survivor aimbot' and 'Killer aimbot' so the killer aimbot is aimbot but for killers and survivor aimbot is aimbot but for survivors i made them separate so you can choose."] = "注意：如果你的脑子太小，无法理解'幸存者自动瞄准'和'杀手自动瞄准'，那么杀手自动瞄准是针对杀手的自动瞄准，幸存者自动瞄准是针对幸存者的自动瞄准，我把它们分开了，这样你就可以选择了。",
     ["Survivor Aimbot"] = "幸存者自动瞄准",
     ["Survivor's Aimbot Prediction"] = "幸存者自动瞄准预测",
     ["0.25 Prediction"] = "0.25 预测",
@@ -353,8 +351,8 @@ local translationDB = {
     ["Cool"] = "很酷",
     ["Stamina"] = "耐力",
     ["Effects"] = "效果",
-    ["Air"] = "空气（此处可能为界面未完全显示或分类项）",
-        ["Ocfi Menu-V3"] = "Ocfi 菜单-V3",
+    ["Air"] = "空气",
+    ["Ocfi Menu-V3"] = "Ocfi 菜单-V3",
     ["Main"] = "主菜单",
     ["Esp Players: OFF"] = "玩家透视：关闭",
     ["Credits"] = "鸣谢",
@@ -375,13 +373,13 @@ local translationDB = {
     ["Get Hallow Party Hat"] = "获取万圣节派对帽",
     ["SantaHat [2.5k Custards]"] = "圣诞帽 [2500 蛋奶冻]",
     ["Hats To Wear"] = "可穿戴的帽子",
- ["Lock"] = "锁定",
+    ["Lock"] = "锁定",
     ["Main"] = "主界面",
     ["Info"] = "信息",
     ["UI Settings"] = "UI设置",
     ["Toggle"] = "切换",
     ["Community"] = "社区",
-    ["You can find the community of our Kagu Hub script in diskord and telegram. I can help you there if you encounter any errors."] = "汉化",
+    ["You can find the community of our Kagu Hub script in diskord and telegram. I can help you there if you encounter any errors."] = "您可以在 Discord 和 Telegram 中找到我们的 Kagu Hub 脚本社区。如果您遇到任何错误，我可以在那里帮助您。",
     ["Telegram Channel Discord Server"] = "Telegram频道 Discord服务器",
     ["SUBMARINES"] = "潜艇",
     ["War Tycoon: v1.3.0"] = "战争大亨: v1.3.0",
@@ -771,7 +769,7 @@ local translationDB = {
     ["Ultra Birdie"] = "超级小鸟",
     ["White Pegasus"] = "白色天马",
     ["White Phoenix"] = "白色凤凰",
-    ["Yellow Butterfly"] = "黄色蝴蝶"
+    ["Yellow Butterfly"] = "黄色蝴蝶",
     ["Main"] = "主要",
     ["Rebirths"] = "重生",
     ["Killer"] = "杀手",
@@ -815,7 +813,7 @@ local translationDB = {
     ["Auto Kill"] = "自动击杀",
     ["Auto Kill Player"] = "自动击杀玩家",
     ["Spectate Player"] = "观战玩家",
-    [" Anti-Teleport If Rebirthed [BETA"] = "重生后防传送 [测试版]",
+    ["Anti-Teleport If Rebirthed [BETA"] = "重生后防传送 [测试版]",
     ["Unlock gamepasses"] = "解锁游戏通行证",
     ["lock gamepasses"] = "锁定游戏通行证",
     ["More FPS"] = "提高帧率",
@@ -826,7 +824,7 @@ local translationDB = {
     ["Show Screen Black"] = "显示黑屏",
     ["Server"] = "服务器",
     ["Auto Reconnect"] = "自动重连",
-        ["Automatically"] = "自动地",
+    ["Automatically"] = "自动地",
     ["Auto Claim Gifts"] = "自动领取礼物",
     ["Set Size"] = "设置尺寸",
     ["Auto Set Size"] = "自动设置尺寸",
@@ -1764,6 +1762,25 @@ local translationDB = {
     ["Ice Spikes"] = "冰刺",
 }
 
+-- 缓存已翻译的对象，避免重复翻译
+local translatedObjects = {}
+
+-- 翻译单个对象
+local function translateObject(obj)
+    if translatedObjects[obj] then
+        return
+    end
+    
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+        local text = obj.Text
+        if text and translationDB[text] then
+            obj.Text = translationDB[text]
+            translatedObjects[obj] = true
+        end
+    end
+end
+
+-- 初始扫描和翻译
 local function scanAndReplace()
     local guiObjects = {
         game:GetService("Players").LocalPlayer.PlayerGui,
@@ -1773,12 +1790,110 @@ local function scanAndReplace()
     
     for _, gui in ipairs(guiObjects) do
         for _, obj in ipairs(gui:GetDescendants()) do
+            translateObject(obj)
+        end
+    end
+end
+
+-- 实时监控新添加的UI元素
+local function setupRealTimeTranslation()
+    local guiObjects = {
+        game:GetService("Players").LocalPlayer.PlayerGui,
+        game:GetService("CoreGui"),
+        game:GetService("StarterGui")
+    }
+    
+    for _, gui in ipairs(guiObjects) do
+        -- 监听新添加的后代元素
+        gui.DescendantAdded:Connect(function(obj)
+            task.wait(0.1) -- 等待文本加载
+            translateObject(obj)
+        end)
+        
+        -- 监听文本变化
+        for _, obj in ipairs(gui:GetDescendants()) do
             if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-                local text = obj.Text
-                if text and translationDB[text] then
-                    obj.Text = translationDB[text]
+                if obj:GetPropertyChangedSignal then
+                    obj:GetPropertyChangedSignal("Text"):Connect(function()
+                        translateObject(obj)
+                    end)
                 end
             end
         end
     end
 end
+
+-- 定期刷新翻译（可选，用于处理动态文本）
+local function setupPeriodicRefresh()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        -- 每60秒刷新一次，避免性能问题
+        if tick() % 60 < 0.1 then
+            scanAndReplace()
+        end
+    end)
+end
+
+-- 主函数
+local function initTranslation()
+    print("开始翻译游戏界面...")
+    
+    -- 等待游戏加载
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    
+    if not game:GetService("Players").LocalPlayer then
+        game:GetService("Players").PlayerAdded:Wait()
+    end
+    
+    -- 等待GUI加载
+    task.wait(2)
+    
+    -- 执行初始扫描
+    scanAndReplace()
+    
+    -- 设置实时监控
+    setupRealTimeTranslation()
+    
+    -- 设置定期刷新（可选）
+    setupPeriodicRefresh()
+    
+    print("翻译系统已启动，已翻译 " .. #translatedObjects .. " 个对象")
+    
+    -- 添加手动刷新功能
+    local function refreshTranslation()
+        translatedObjects = {} -- 清除缓存
+        scanAndReplace()
+        print("已刷新翻译，当前已翻译 " .. #translatedObjects .. " 个对象")
+    end
+    
+    -- 返回刷新函数，可以手动调用
+    return refreshTranslation
+end
+
+-- 启动翻译系统
+local refreshTranslation = initTranslation()
+
+-- 可选：创建一个按钮来手动刷新翻译
+if false then -- 设置为true可以创建一个测试按钮
+    local ScreenGui = Instance.new("ScreenGui")
+    local RefreshButton = Instance.new("TextButton")
+    
+    ScreenGui.Parent = game:GetService("CoreGui")
+    
+    RefreshButton.Size = UDim2.new(0, 120, 0, 40)
+    RefreshButton.Position = UDim2.new(0, 10, 0, 10)
+    RefreshButton.Text = "刷新翻译"
+    RefreshButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+    RefreshButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    RefreshButton.Parent = ScreenGui
+    
+    RefreshButton.MouseButton1Click:Connect(function()
+        refreshTranslation()
+    end)
+end
+
+return {
+    Refresh = refreshTranslation,
+    TranslationDB = translationDB
+}
