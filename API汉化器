@@ -1,0 +1,126 @@
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+Notification:Notify(
+    {Title = "通知", Description = "作者:皮炎"},
+    {OutlineColor = Color3.fromRGB(0, 100, 200), Time = 2, Type = "image"},
+    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(0, 150, 255)}
+)
+
+task.wait(1)
+
+Notification:Notify(
+    {Title = "通知", Description = "请耐心等待"},
+    {OutlineColor = Color3.fromRGB(0, 100, 200), Time = 2, Type = "image"},
+    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(0, 150, 255)}
+)
+
+local TranslateEngine = {isRunning = false, cache = {}, textData = {}, translatedCount = 0, totalCount = 0}
+
+local function translateText(text)
+    if not text or text == "" then return text end
+    if TranslateEngine.cache[text] then return TranslateEngine.cache[text] end
+    local googleUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q=" .. game:GetService("HttpService"):UrlEncode(text)
+    local success, result = pcall(function() return game:HttpGet(googleUrl, true) end)
+    if not success or not result then
+        local baiduUrl = "https://fanyi.baidu.com/sug?kw=" .. game:GetService("HttpService"):UrlEncode(text)
+        success, result = pcall(function() return game:HttpGet(baiduUrl, true) end)
+        if success and result then
+            local decodeSuccess, decoded = pcall(function() return game:GetService("HttpService"):JSONDecode(result) end)
+            if decodeSuccess and decoded.data and #decoded.data > 0 then
+                local translated = decoded.data[1].v
+                TranslateEngine.cache[text] = translated
+                return translated
+            end
+        else
+            Notification:Notify(
+                {Title = "翻译异常", Description = "翻译接口访问失败，检查网络"},
+                {OutlineColor = Color3.fromRGB(0, 100, 200), Time = 3, Type = "image"},
+                {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 58, 68)}
+            )
+            return text
+        end
+    else
+        local decodeSuccess, decoded = pcall(function() return game:GetService("HttpService"):JSONDecode(result) end)
+        if decodeSuccess and decoded and decoded[1] then
+            local translated = ""
+            for _, item in ipairs(decoded[1]) do
+                if item[1] and type(item[1]) == "string" then translated = translated .. item[1] end
+            end
+            TranslateEngine.cache[text] = translated
+            return translated
+        end
+    end
+    TranslateEngine.cache[text] = text
+    return text
+end
+
+local function scanAndTranslate()
+    if not TranslateEngine.isRunning then return end
+    local player = game:GetService("Players").LocalPlayer
+    local playerGui = player:FindFirstChild("PlayerGui")
+    if not playerGui then
+        Notification:Notify(
+            {Title = "扫描异常", Description = "未找到游戏界面容器"},
+            {OutlineColor = Color3.fromRGB(0, 100, 200), Time = 3, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 58, 68)}
+        )
+        return
+    end
+    local guis = {game:GetService("CoreGui"), playerGui}
+    local translatedCount = 0
+    local totalCount = 0
+    for _, gui in ipairs(guis) do
+        for _, descendant in ipairs(gui:GetDescendants()) do
+            if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                totalCount = totalCount + 1
+                pcall(function()
+                    local text = descendant.Text
+                    if text and text ~= "" and #text >= 1 and #text <= 200 and text:match("%a") then
+                        local translated = translateText(text)
+                        if translated and translated ~= text then
+                            descendant.Text = translated
+                            translatedCount = translatedCount + 1
+                        end
+                    end
+                end)
+            end
+        end
+    end
+    
+    Notification:Notify(
+        {Title = "极速汉化", Description = "已翻译 " .. translatedCount .. " / " .. totalCount .. " 个文本"},
+        {OutlineColor = Color3.fromRGB(0, 100, 200), Time = 3, Type = "image"},
+        {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(0, 150, 255)}
+    )
+    
+    return translatedCount, totalCount
+end
+
+local TranslateToggle = {
+    Title = "启用极速汉化",
+    Value = false,
+    Callback = function(state)
+        TranslateEngine.isRunning = state
+        if state then
+            task.spawn(function()
+                while TranslateEngine.isRunning do
+                    local translated, total = scanAndTranslate()
+                    task.wait(5)
+                end
+            end)
+        end
+    end
+}
+
+local function executeTranslation()
+    if not TranslateEngine.isRunning then
+        TranslateEngine.isRunning = true
+        local translated, total = scanAndTranslate()
+        TranslateEngine.isRunning = false
+    else
+        scanAndTranslate()
+    end
+end
+
+executeTranslation()
